@@ -13,8 +13,6 @@ ang_y = 0
 ang_z = 0
 
 
-P = np.array([[1 ,0, 0, 0], [0, 1, 0, 0], [0, 0, 0, -d], [0, 0, -1/d, 0]])
-
 # Velocidade angular (rotacoes por segundo)
 v = 0.2
 
@@ -30,6 +28,8 @@ COR_PONTOS = (200, 30, 20)
 
 rodando = True
 while rodando:
+
+    P = np.array([[1 ,0, 0, 0], [0, 1, 0, 0], [0, 0, 0, -d], [0, 0, -1/d, 0]])
 
     rx = np.array([[1, 0, 0, 0],
     [0, math.cos(math.radians(ang_x)), -math.sin(math.radians(ang_x)), 0],
@@ -65,6 +65,12 @@ while rodando:
                 ang_y += 10
             elif event.key == pygame.K_z:
                 ang_z += 10
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 4:
+            if d - 0.2 > 0:
+                d -= 0.2
+        elif event.type == pygame.MOUSEBUTTONUP and event.button == 5:
+            if d + 0.2 > 0:
+                d += 0.2
 
 
     # Controlar frame rate
