@@ -61,19 +61,7 @@ while rodando:
             rodando = False
 
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w and not girando:
-                ang_x += 10
-            elif event.key == pygame.K_s and not girando:
-                ang_x -= 10
-            elif event.key == pygame.K_a and not girando:
-                ang_y += 10
-            elif event.key == pygame.K_d and not girando:
-                ang_y -= 10
-            elif event.key == pygame.K_z and not girando:
-                ang_z += 10
-            elif event.key == pygame.K_x and not girando:
-                ang_z -= 10
-            elif event.key == pygame.K_r:
+            if event.key == pygame.K_r:
                 ang_x = 0
                 ang_y = 0
                 ang_z = 0
@@ -88,6 +76,20 @@ while rodando:
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 5:
             if d + 0.2 > 0:
                 d += 0.2
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_w] and not girando:
+        ang_x += 1
+    if keys[pygame.K_s] and not girando:
+        ang_x -= 1
+    if keys[pygame.K_a] and not girando:
+        ang_y += 1
+    if keys[pygame.K_d] and not girando:
+        ang_y -= 1
+    if keys[pygame.K_z] and not girando:
+        ang_z += 1
+    if keys[pygame.K_x] and not girando:
+        ang_z -= 1
 
     if girando:
         ang_x += 1
