@@ -15,9 +15,6 @@ ang_y = 0
 ang_z = 0
 girando = False
 
-# Velocidade angular (rotacoes por segundo)
-v = 0.2
-
 # Tamanho da tela e definição do FPS
 screen = pygame.display.set_mode((WIDHT, HEIGHT))
 clock = pygame.time.Clock()
