@@ -5,6 +5,8 @@ import math
 pygame.init()
 
 # Tenho aqui vários pontos sobre uma circunferência
+WIDHT = 1000
+HEIGHT = 600
 
 objeto = np.array([[1, 1, -1, -1, 1, 1, -1, -1],[1, -1, -1, 1, 1, -1, -1, 1],[-1, -1, -1, -1, 1, 1, 1, 1],[1, 1, 1, 1, 1, 1, 1, 1]])
 d = 1
@@ -17,7 +19,7 @@ girando = False
 v = 0.2
 
 # Tamanho da tela e definição do FPS
-screen = pygame.display.set_mode((800, 800))
+screen = pygame.display.set_mode((WIDHT, HEIGHT))
 clock = pygame.time.Clock()
 FPS = 60  # Frames per Second
 
@@ -52,8 +54,8 @@ while rodando:
     proj = P @ proj
     proj = proj/proj[3]
     proj = proj * 200
-    proj[0] = proj[0] + 800/2
-    proj[1] = proj[1] + 800/2
+    proj[0] = proj[0] + WIDHT/2
+    proj[1] = proj[1] + HEIGHT/2
     
     # Capturar eventos
     for event in pygame.event.get():
