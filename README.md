@@ -1,4 +1,4 @@
-# 3d-Cube-Pygame-APS
+# 3D Cube Pygame
 
 ## Descrição
 Programa em pygame que utiliza algoritmo de pinhole para projetar um cubo 3D sobre a tela 2D.
@@ -26,11 +26,11 @@ Na implementação, a técnica pode ser representada por matriz de transformaç�
 
 ![Pinhole e Anteparo](img/IMG_2974.jpg)
 
-* (X0, Z0): Posição do objeto;
-* (Xp, Zp): Posição da projeção;
+* (X0Z0 e XpZp): Posição objeto e projeção;
+* Pinhole: Origem do plano;
 * d: Distância entre pinhole e anteparo.
 
-De acordo com a imagem, é possível concluir que `Zp = -d`;
+De acordo com a figura, é possível concluir que `Zp = -d`;
 O objeto e sua projeção geram o mesmo ângulo theta, em relação ao eixo vertical, e opostos pelo vértice. Assim, foi feita uma semelhança de triângulos para encontrar o valor de Xp.
 
 $$
@@ -51,11 +51,10 @@ X_0 = X_p * W_p
 $$
 
 Podemos fazer esse mesmo processo, mas agora para Y em função de Z. Para encontrar: 
-$$
-Y_0 = X_p * W_p
-$$
+`Y_0 = X_p * W_p`
 
-Em seguida, podemos montar a matriz de projeção: `T = Projeção @ X`, sabendo: 
+Em seguida, podemos montar a matriz de projeção: `T = Projeção @ X`, sabendo: <br>
+
 $$
 X = \begin{bmatrix}
 X_0 \\
@@ -63,7 +62,6 @@ Y_0 \\
 Z_0 \\
 1
 \end{bmatrix}
-
 T = \begin{bmatrix}
 X_pW_p \\
 Y_pW_p \\
@@ -99,9 +97,11 @@ $$
 Concluindo, para finalmente encontrar os valores de Xp e Yp, basta divide-se as linhas 1 e 2 do vetor T por sua quarta linha: `Xp*Wp/Wp = T[0]/T[2]` e `Yp*Wp/Wp = T[1]/T[2]`.
 
 ## Outras Matrizes Utilizadas
+
+#### Cubo: 
 No código, o Cubo é representado por uma matriz 4x8. Quando transposta, as linhas guardam as posições dos 8 vértices do Cubo, já as colunas 1,2,3 são as posições X,Y,Z, e a coluna restante é composta apenas de uns para auxiliar nas transformações futuras.
 
-### Rotações:
+#### Rotações:
 $$
 R_x = \begin{bmatrix}
 1 & 0 & 0 & 0 \\
@@ -124,4 +124,7 @@ R_z = \begin{bmatrix}
 0 & 0 & 0 & 1
 \end{bmatrix}
 $$
+
+## Implementação
+
 
