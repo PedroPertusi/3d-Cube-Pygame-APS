@@ -14,8 +14,8 @@ Programa em pygame que utiliza algoritmo de pinhole fotográfico para projetar u
 
 ## Modelo Matemático
 O desafio desse projeto foi transformar um cubo com posições em 3D numa projeção em duas dimensões, que mantivesse sua forma mesmo com diversas transformações de rotação e expansão.
-A projeção do Cubo ocorreu por meio de Pinhole Fotográfico. Essa técnica consiste em posicionar uma pequena passagem de luz para gerar uma imagem no destino final. 
-Na implementação, a técnica pode ser representada por matriz de transformação, gerada a partir da seguinte dedução matemática:
+A projeção do Cubo ocorreu por meio de Pinhole Fotográfico, técnica que consiste em posicionar uma pequena passagem de luz para gerar uma imagem no destino final, o anteparo. 
+Na implementação, a projeção resultante do pinhole pode ser representada por uma matriz de transformação, gerada a partir da seguinte dedução matemática:
 
 ![Pinhole e Anteparo](img/IMG_2974.jpg)
 
