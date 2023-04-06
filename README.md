@@ -10,15 +10,6 @@ Programa em pygame que utiliza algoritmo de pinhole para projetar um cubo 3D sob
 - Em seguida, execute o comando: `pip install -r requirements.txt` no diretório principal do projeto clonado.
 - Execute o programa com o seguinte comando: `python demo.py`
 
-## Funcionalidades
-| Ação | Input | 
-| --- | --- |
-| Zoom IN & OUT | Scroll |
-| Rotacionar Eixo X | A, D |
-| Rotacionar Eixo Y | W, S |
-| Rotacionar Eixo Z | Z, X |
-| Resetar Ângulo de Rotação | R |
-
 ## Modelo Matemático
 O desafio desse projeto foi transformar um cubo com posições em 3D numa projeção em duas dimensões, que mantivesse sua forma mesmo com diversas transformações de rotação e expansão.
 A projeção do Cubo ocorreu por meio de Pinhole Fotográfico. Essa técnica consiste em posicionar uma pequena passagem de luz para gerar uma imagem no destino final. 
@@ -51,9 +42,12 @@ X_0 = X_p * W_p
 $$
 
 Podemos fazer esse mesmo processo, mas agora para Y em função de Z. Para encontrar: 
-`Y_0 = X_p * W_p`
 
-Em seguida, podemos montar a matriz de projeção: `T = Projeção @ X`, sabendo: <br>
+$$
+Y_0 = Y_p * W_p
+$$
+
+Em seguida, podemos montar a matriz de projeção: `T = Projeção @ X`, sabendo:
 
 $$
 X = \begin{bmatrix}
@@ -71,7 +65,7 @@ W_p
 $$
 
 Como vimos que `X0 = Xp * Wp`, e `Y0 = Yp * Wp`a primeira e segunda linha da matriz projeção serão: `[1,0,0,0]` e `[0,1,0,0]`, respectivamente.
-Sabemos que `Y0 = -d`, portanto, a segunda linha será: `[0,0,-d,0]`. Por fim, `Wp = Y0/-d = -1/d` a terceira linha será: `[0,-1/d, 0]`.
+Sabemos que `Y0 = -d`, portanto, a terceira linha será: `[0,0,-d,0]`. Por fim, `Wp = Y0/-d = -1/d` a quarta linha será: `[0,-1/d, 0]`.
 
 $$
 \begin{bmatrix}
@@ -100,7 +94,7 @@ Concluindo, para finalmente encontrar os valores de Xp e Yp, basta divide-se as 
 - Inicialmente, foi feita a modelagem do cubo de aresta 1u por meio de uma matriz 4x8. Quando transposta, as linhas guardam as posições dos 8 vértices do Cubo, já as colunas 1,2,3 são as posições X,Y,Z, e a coluna restante é composta apenas de uns para auxiliar nas transformações futuras;
 - Em seguida, foram aplicadas as transformações `Rotação_X, Rotação_Y e Rotação_Z` sobre o objeto, por meio de multiplicações matriciais: `proj = rz @ ry @ rx @ objeto`;
 - Após isso, aplicou-se a matriz de projeção P: `proj = P @ proj`;
-- Dividiu-se toda a matriz pela linha Wp, para encontrar os reais valores de destino da projeção.
+- Dividiu-se toda a matriz pela linha Wp, para encontrar os reais valores de destino da projeção. Lembrando, a dimensão Z pode agora ser descartada, pois essa será a dimensão perdida no processo de projeção 3D -> 2D.
 - Por fim, houve uma etapa para acertar o posicionamento do cubo: Aumento de suas arestas em 200x e translação para o centro da tela.
 
 Para criar o efeito de rotação do cubo, para cada frame, incrementa-se o ângulo theta para X, Y ou Z, de acordo com o input do usuário. Consequentemente, apresenta na tela a nova posição atualizada, assim, gerando movimento para o cubo.
@@ -128,5 +122,14 @@ R_z = \begin{bmatrix}
 0 & 0 & 0 & 1
 \end{bmatrix}
 $$
+
+## Funcionalidades
+| Ação | Input | 
+| --- | --- |
+| Zoom IN & OUT | Scroll |
+| Rotacionar Eixo X | A, D |
+| Rotacionar Eixo Y | W, S |
+| Rotacionar Eixo Z | Z, X |
+| Resetar Ângulo de Rotação | R |
 
 
