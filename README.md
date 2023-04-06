@@ -11,7 +11,7 @@ Programa em pygame que utiliza algoritmo de pinhole para projetar um cubo 3D sob
 - Execute o programa com o seguinte comando: `python demo.py`
 
 ## Funcionalidades
-| Ação | Tecla | 
+| Ação | Input | 
 | --- | --- |
 | Zoom IN & OUT | Scroll |
 | Rotacionar Eixo X | A, D |
@@ -20,11 +20,11 @@ Programa em pygame que utiliza algoritmo de pinhole para projetar um cubo 3D sob
 | Resetar Ângulo de Rotação | R |
 
 ## Modelo Matemático
-O desafio desse projeto foi transformar um Cubo com posições em 3D numa projeção em duas dimensões, que mantivesse sua forma mesmo com diversas transformações de rotação e expansão.
+O desafio desse projeto foi transformar um cubo com posições em 3D numa projeção em duas dimensões, que mantivesse sua forma mesmo com diversas transformações de rotação e expansão.
 A projeção do Cubo ocorreu por meio de Pinhole Fotográfico. Essa técnica consiste em posicionar uma pequena passagem de luz para gerar uma imagem no destino final. 
 Na implementação, a técnica pode ser representada por matriz de transformação, gerada a partir da seguinte dedução matemática:
 
-![Pinhole e Anteparo](img\IMG_2974.jpg)
+![Pinhole e Anteparo](img/IMG_2974.jpg)
 
 * (X0, Z0): Posição do objeto;
 * (Xp, Zp): Posição da projeção;
@@ -73,7 +73,7 @@ W_p
 $$
 
 Como vimos que `X0 = Xp * Wp`, e `Y0 = Yp * Wp`a primeira e segunda linha da matriz projeção serão: `[1,0,0,0]` e `[0,1,0,0]`, respectivamente.
-Sabemos que `Y0 = -d`, portanto, a segunda linha será: `[0,0,-d]`. Por fim, `Wp = Y0/-d = -1/d` a terceira linha será: `[0,-1/d, 0]`.
+Sabemos que `Y0 = -d`, portanto, a segunda linha será: `[0,0,-d,0]`. Por fim, `Wp = Y0/-d = -1/d` a terceira linha será: `[0,-1/d, 0]`.
 
 $$
 \begin{bmatrix}
@@ -81,15 +81,13 @@ $$
 0 & 1 & 0 & 0\\
 0 & 0 & -d & 0\\
 0 & -1/d & 0 & 0\\
-\end{bmatrix}
-@
+\end{bmatrix}*
 \begin{bmatrix}
 X_0 \\
 Y_0 \\
 Z_0 \\
 1
-\end{bmatrix}
-=
+\end{bmatrix}=
 \begin{bmatrix}
 X_pW_p \\
 Y_pW_p \\
