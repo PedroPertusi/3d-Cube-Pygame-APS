@@ -1,7 +1,9 @@
 # 3D Cube Pygame
 
+![Gif de demonstração da implementação](https://user-images.githubusercontent.com/104772038/230260304-5060c771-c0dd-49b9-be35-dc098d56afab.gif)
+
 ## Descrição
-Programa em pygame que utiliza algoritmo de pinhole para projetar um cubo 3D sobre a tela 2D.
+Programa em pygame que utiliza algoritmo de pinhole fotográfico para projetar um cubo 3D sofrendo rotações sobre a tela 2D. 
 
 ## Como utilizar
 - É possível instalar a aplicação de duas formas:
