@@ -96,12 +96,16 @@ $$
 
 Concluindo, para finalmente encontrar os valores de Xp e Yp, basta divide-se as linhas 1 e 2 do vetor T por sua quarta linha: `Xp*Wp/Wp = T[0]/T[2]` e `Yp*Wp/Wp = T[1]/T[2]`.
 
-## Outras Matrizes Utilizadas
+## Implementação
+- Inicialmente, foi feita a modelagem do cubo de aresta 1u por meio de uma matriz 4x8. Quando transposta, as linhas guardam as posições dos 8 vértices do Cubo, já as colunas 1,2,3 são as posições X,Y,Z, e a coluna restante é composta apenas de uns para auxiliar nas transformações futuras;
+- Em seguida, foram aplicadas as transformações `Rotação_X, Rotação_Y e Rotação_Z` sobre o objeto, por meio de multiplicações matriciais: `proj = rz @ ry @ rx @ objeto`;
+- Após isso, aplicou-se a matriz de projeção P: `proj = P @ proj`;
+- Dividiu-se toda a matriz pela linha Wp, para encontrar os reais valores de destino da projeção.
+- Por fim, houve uma etapa para acertar o posicionamento do cubo: Aumento de suas arestas em 200x e translação para o centro da tela.
 
-#### Cubo: 
-No código, o Cubo é representado por uma matriz 4x8. Quando transposta, as linhas guardam as posições dos 8 vértices do Cubo, já as colunas 1,2,3 são as posições X,Y,Z, e a coluna restante é composta apenas de uns para auxiliar nas transformações futuras.
+Para criar o efeito de rotação do cubo, para cada frame, incrementa-se o ângulo theta para X, Y ou Z, de acordo com o input do usuário. Consequentemente, apresenta na tela a nova posição atualizada, assim, gerando movimento para o cubo.
 
-#### Rotações:
+#### Matrizes de Rotação:
 $$
 R_x = \begin{bmatrix}
 1 & 0 & 0 & 0 \\
@@ -124,7 +128,5 @@ R_z = \begin{bmatrix}
 0 & 0 & 0 & 1
 \end{bmatrix}
 $$
-
-## Implementação
 
 
