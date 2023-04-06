@@ -27,9 +27,7 @@ COR_PONTOS = (200, 30, 20)
 
 rodando = True
 while rodando:
-    
-
-    P = np.array([[1 ,0, 0, 0], [0, 1, 0, 0], [0, 0, 0, -d], [0, 0, -1/d, 0]])
+    P = np.array([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, -d], [0, 0, -1/d, 0]])
 
     rx = np.array([[1, 0, 0, 0],
     [0, math.cos(math.radians(ang_x)), -math.sin(math.radians(ang_x)), 0],
@@ -104,7 +102,7 @@ while rodando:
         pygame.draw.circle(screen, (0,150,0), (proj[0][i], proj[1][i]), 10)
 
     for start,end in [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7]]:
-        pygame.draw.line(screen, (0,255,0), (proj[0][start], proj[1][start]), (proj[0][end], proj[1][end]),10)
+        pygame.draw.line(screen, (0,255,0), (proj[0][start], proj[1][start]), (proj[0][end], proj[1][end]),1)
 
 
     # Update!
